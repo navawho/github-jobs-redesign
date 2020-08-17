@@ -5,11 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { Container, Content, Breadcrumbs, Header, TextBox } from './styles';
 import JobCard from '../../components/JobCard';
 
-import insight from '../../assets/insight.png';
-
 import { PageWrapper } from '../styles';
 
-import { useJob } from '../../hooks/job';
+import { useJob } from '../../hooks/jobContext';
 
 const SecondPage: React.FC = () => {
 	const history = useHistory();

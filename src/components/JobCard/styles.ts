@@ -33,6 +33,7 @@ export const Container = styled.div<ContainerProps>`
 		h2 {
 			margin-bottom: 2px;
 			max-width: 500px;
+			text-align: start;
 		}
 
 		.info-wrapper {

@@ -52,7 +52,12 @@ export const VerticalLine = styled.div`
 `;
 
 export const Jobs = styled.div`
-	> div {
+	display: flex;
+	flex-direction: column;
+
+	button {
+		border: 0;
+		background: transparent;
 		margin-bottom: 24px;
 	}
 `;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MdSearch, MdLocationOn, MdClose } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import { useHistory } from 'react-router-dom';
-import { useJob } from '../../hooks/job';
+import { useJob } from '../../hooks/jobContext';
 
 import data from './data';
 
@@ -14,13 +14,11 @@ import { PageWrapper } from '../styles';
 import JobCard from '../../components/JobCard';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import JobDTO from '../../dtos/job';
+import fetchJobs from '../../hooks/fetchJobs';
 
 const Home: React.FC = () => {
 	const history = useHistory();
 	const { changeJob } = useJob();
-
-	const [jobs, setJobs] = useState<JobDTO[]>(data);
-	const [isLoading, setIsLoading] = useState(false);
 
 	const [description, setDescription] = useState('');
 	const [location, setLocation] = useState('');
@@ -39,15 +37,7 @@ const Home: React.FC = () => {
 		setLocation('');
 	};
 
-	// useEffect(() => {
-	// 	setIsLoading(true);
-	// 	api
-	// 		.get('/positions.json', { params: { description, location } })
-	// 		.then(({ data }) => {
-	// 			setJobs(data);
-	// 			setIsLoading(false);
-	// 		});
-	// }, [description, location]);
+	const { jobs, isLoading } = fetchJobs(location, description);
 
 	return (
 		<PageWrapper>
@@ -88,14 +78,19 @@ const Home: React.FC = () => {
 						<LoadingSpinner />
 					) : (
 						jobs.map((job) => (
-							<JobCard
-								title={job.title}
-								location={job.location}
-								work={job.company}
-								fullTime={job.type === 'Full Time'}
-								createdAt={job.created_at}
-								click={() => handleJobClick(job)}
-							/>
+							<button
+								key={job.id}
+								onClick={() => handleJobClick(job)}
+								type="button"
+							>
+								<JobCard
+									title={job.title}
+									location={job.location}
+									work={job.company}
+									fullTime={job.type === 'Full Time'}
+									createdAt={job.created_at}
+								/>
+							</button>
 						))
 					)}
 				</Jobs>

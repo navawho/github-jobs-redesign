@@ -5,7 +5,7 @@ import GlobalStyle from './styles/global';
 
 import Routes from './routes';
 
-import { JobProvider } from './hooks/job';
+import { JobProvider } from './hooks/jobContext';
 
 const App: React.FC = () => (
 	<BrowserRouter>

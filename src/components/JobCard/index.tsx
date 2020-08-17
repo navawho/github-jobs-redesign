@@ -11,7 +11,6 @@ interface JobCardProps {
 	fullTime: boolean;
 	hover?: boolean;
 	createdAt: string;
-	click?(): void;
 }
 
 const JobCard: React.FC<JobCardProps> = ({
@@ -21,10 +20,9 @@ const JobCard: React.FC<JobCardProps> = ({
 	fullTime,
 	hover = true,
 	createdAt,
-	click,
 }) => {
 	return (
-		<Container onClick={click} hover={hover}>
+		<Container hover={hover}>
 			<div className="description-wrapper">
 				<h2>{title}</h2>
 				<div className="info-wrapper">
