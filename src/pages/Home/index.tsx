@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { MdSearch, MdLocationOn, MdClose } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import { useHistory } from 'react-router-dom';
 import { useJob } from '../../hooks/jobContext';
-
-import data from './data';
-
-import api from '../../services/api';
 
 import { Content, SearchBar, SearchInput, VerticalLine, Jobs } from './styles';
 import { PageWrapper } from '../styles';
@@ -20,8 +16,37 @@ const Home: React.FC = () => {
 	const history = useHistory();
 	const { changeJob } = useJob();
 
+	const observer: any = useRef();
+
+	const [page, setPage] = useState(1);
 	const [description, setDescription] = useState('');
 	const [location, setLocation] = useState('');
+
+	const { jobs, isLoading, hasError, hasMore } = fetchJobs(
+		location,
+		description,
+		page,
+	);
+
+	const lastJobElementRef = useCallback(
+		(node) => {
+			if (isLoading) {
+				return;
+			}
+			if (observer.current) {
+				observer.current.disconnect();
+			}
+			observer.current = new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting && hasMore) {
+					setPage((prevPage) => prevPage + 1);
+				}
+			});
+			if (node) {
+				observer.current.observe(node);
+			}
+		},
+		[isLoading, hasMore],
+	);
 
 	const handleJobClick = (job: JobDTO): void => {
 		changeJob(job);
@@ -36,11 +61,6 @@ const Home: React.FC = () => {
 	const handleCloseLocationClick = (): void => {
 		setLocation('');
 	};
-
-	const { jobs, isLoading, hasError, hasMore } = fetchJobs(
-		location,
-		description,
-	);
 
 	return (
 		<PageWrapper>
@@ -77,28 +97,46 @@ const Home: React.FC = () => {
 					</SearchInput>
 				</SearchBar>
 				<Jobs>
-					{!hasError && isLoading ? (
-						<LoadingSpinner />
-					) : (
-						jobs.map((job) => (
-							<button
-								key={job.id}
-								onClick={() => handleJobClick(job)}
-								type="button"
-							>
-								<JobCard
-									title={job.title}
-									location={job.location}
-									work={job.company}
-									fullTime={job.type === 'Full Time'}
-									createdAt={job.created_at}
-								/>
-							</button>
-						))
-					)}
-					{hasError &&
-						'Ocorreu um erro ao carregar as oportunidades, por favor tente novamente'}
+					{!hasError
+						? jobs.map((job, index) => {
+								if (jobs.length === index + 1) {
+									return (
+										<button
+											key={job.id}
+											onClick={() => handleJobClick(job)}
+											type="button"
+											ref={lastJobElementRef}
+										>
+											<JobCard
+												title={job.title}
+												location={job.location}
+												work={job.company}
+												fullTime={job.type === 'Full Time'}
+												createdAt={job.created_at}
+											/>
+										</button>
+									);
+								}
+
+								return (
+									<button
+										key={job.id}
+										onClick={() => handleJobClick(job)}
+										type="button"
+									>
+										<JobCard
+											title={job.title}
+											location={job.location}
+											work={job.company}
+											fullTime={job.type === 'Full Time'}
+											createdAt={job.created_at}
+										/>
+									</button>
+								);
+						  })
+						: 'Ocorreu um erro ao carregar as oportunidades, por favor tente novamente'}
 				</Jobs>
+				{isLoading && !hasError && <LoadingSpinner />}
 			</Content>
 		</PageWrapper>
 	);

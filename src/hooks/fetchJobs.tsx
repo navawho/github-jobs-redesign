@@ -6,6 +6,7 @@ import JobDTO from '../dtos/job';
 const FetchJobs = (
 	location: string,
 	description: string,
+	page: number,
 ): {
 	isLoading: boolean;
 	jobs: JobDTO[];
@@ -27,7 +28,7 @@ const FetchJobs = (
 		let cancel: Canceler;
 		api
 			.get('/positions.json', {
-				params: { description, location },
+				params: { description, location, page },
 				cancelToken: new axios.CancelToken((c) => {
 					cancel = c;
 				}),
@@ -45,7 +46,7 @@ const FetchJobs = (
 			});
 
 		return () => cancel();
-	}, [description, location]);
+	}, [description, location, page]);
 
 	return { isLoading, jobs, hasError, hasMore };
 };

@@ -41,7 +41,7 @@ const SecondPage: React.FC = () => {
 							<a
 								href={selectedJob.company_url || ''}
 								target="_blank"
-								rel="noreferrer"
+								rel="noopener noreferrer"
 							>
 								<img
 									src={selectedJob.company_logo}

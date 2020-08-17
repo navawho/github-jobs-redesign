@@ -39,6 +39,7 @@
         "allowExpressions": true
       }
     ],
+    "@typescript-eslint/no-explicit-any": "off",
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
