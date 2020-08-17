@@ -49,4 +49,8 @@ export const VerticalLine = styled.div`
 	margin: 0px 12px;
 `;
 
-export const Jobs = styled.div``;
+export const Jobs = styled.div`
+	> div {
+		margin-bottom: 24px;
+	}
+`;

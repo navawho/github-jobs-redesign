@@ -4,6 +4,8 @@ import { IconContext } from 'react-icons';
 import { useHistory } from 'react-router-dom';
 import { useJob } from '../../hooks/job';
 
+import data from './data';
+
 import api from '../../services/api';
 
 import { Content, SearchBar, SearchInput, VerticalLine, Jobs } from './styles';
@@ -17,7 +19,7 @@ const Home: React.FC = () => {
 	const history = useHistory();
 	const { changeJob } = useJob();
 
-	const [jobs, setJobs] = useState<JobDTO[]>([]);
+	const [jobs, setJobs] = useState<JobDTO[]>(data);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [description, setDescription] = useState('');
@@ -37,15 +39,15 @@ const Home: React.FC = () => {
 		setLocation('');
 	};
 
-	useEffect(() => {
-		setIsLoading(true);
-		api
-			.get('/positions.json', { params: { description, location } })
-			.then(({ data }) => {
-				setJobs(data);
-				setIsLoading(false);
-			});
-	}, [description, location]);
+	// useEffect(() => {
+	// 	setIsLoading(true);
+	// 	api
+	// 		.get('/positions.json', { params: { description, location } })
+	// 		.then(({ data }) => {
+	// 			setJobs(data);
+	// 			setIsLoading(false);
+	// 		});
+	// }, [description, location]);
 
 	return (
 		<PageWrapper>

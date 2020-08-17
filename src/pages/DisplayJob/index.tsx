@@ -14,7 +14,9 @@ import { useJob } from '../../hooks/job';
 const SecondPage: React.FC = () => {
 	const history = useHistory();
 
-	const { selectedJob } = useJob();
+	const { getJob } = useJob();
+
+	const selectedJob = getJob();
 
 	const handleBackClick = (): void => {
 		history.push('/');
@@ -37,6 +39,18 @@ const SecondPage: React.FC = () => {
 							hover={false}
 							createdAt={selectedJob.created_at}
 						/>
+						{selectedJob.company_logo && (
+							<a
+								href={selectedJob.company_url || ''}
+								target="_blank"
+								rel="noreferrer"
+							>
+								<img
+									src={selectedJob.company_logo}
+									alt={`${selectedJob.company} Logo`}
+								/>
+							</a>
+						)}
 					</Header>
 					<TextBox>
 						<h2>Descrição da oportunidade</h2>

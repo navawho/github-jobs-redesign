@@ -13,7 +13,6 @@ export const Container = styled.div<ContainerProps>`
 	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 	padding: 16px 32px;
 	border-radius: 42px;
-	margin-bottom: 24px;
 
 	transition: 0.3s;
 
@@ -33,6 +32,7 @@ export const Container = styled.div<ContainerProps>`
 
 		h2 {
 			margin-bottom: 2px;
+			max-width: 500px;
 		}
 
 		.info-wrapper {

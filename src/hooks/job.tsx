@@ -1,16 +1,10 @@
-import React, {
-	createContext,
-	useCallback,
-	useContext,
-	useState,
-	useEffect,
-} from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 
 import JobDTO from '../dtos/job';
 
 interface JobContextData {
 	changeJob(job: JobDTO): void;
-	selectedJob: JobDTO;
+	getJob(): JobDTO;
 }
 
 const JobContext = createContext<JobContextData>({} as JobContextData);
@@ -18,12 +12,14 @@ const JobContext = createContext<JobContextData>({} as JobContextData);
 const JobProvider: React.FC = ({ children }) => {
 	const [selectedJob, setSelectedJob] = useState({} as JobDTO);
 
-	useEffect(() => {
+	const getJob = useCallback((): JobDTO => {
 		const jobLocal = localStorage.getItem('@GithubJobs:job');
 
 		if (jobLocal) {
-			setSelectedJob(JSON.parse(jobLocal));
+			return JSON.parse(jobLocal);
 		}
+
+		return selectedJob;
 	}, [selectedJob]);
 
 	const changeJob = useCallback((job: JobDTO): void => {
@@ -33,7 +29,7 @@ const JobProvider: React.FC = ({ children }) => {
 	}, []);
 
 	return (
-		<JobContext.Provider value={{ changeJob, selectedJob }}>
+		<JobContext.Provider value={{ changeJob, getJob }}>
 			{children}
 		</JobContext.Provider>
 	);

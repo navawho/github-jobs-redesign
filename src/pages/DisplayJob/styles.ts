@@ -40,15 +40,16 @@ export const Breadcrumbs = styled.div`
 export const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 32px;
 
 	img {
 		cursor: pointer;
 
-		height: 100%;
-		width: 100%;
+		height: 100px;
+		width: 300px;
 
-		object-fit: fill;
+		border-radius: 30px;
 	}
 `;
 
