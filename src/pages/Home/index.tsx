@@ -54,7 +54,10 @@ const Home: React.FC = () => {
 			<Content>
 				<SearchBar>
 					<SearchInput isEmpty={description.length === 0}>
-						<MdSearch color="#333333" size={30} />
+						<MdSearch
+							color={description.length === 0 ? '#333333' : '#1066E8'}
+							size={30}
+						/>
 						<input
 							value={description}
 							placeholder="Pesquisar oportunidade"
@@ -66,7 +69,10 @@ const Home: React.FC = () => {
 					</SearchInput>
 					<VerticalLine />
 					<SearchInput isEmpty={location.length === 0}>
-						<MdLocationOn color="#333333" size={30} />
+						<MdLocationOn
+							color={location.length === 0 ? '#333333' : '#1066E8'}
+							size={30}
+						/>
 						<input
 							placeholder="Filtrar localização"
 							value={location}

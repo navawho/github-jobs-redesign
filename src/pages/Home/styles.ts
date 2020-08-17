@@ -28,10 +28,12 @@ export const SearchInput = styled.div<SearchInputProps>`
 	.close-icon {
 		cursor: pointer;
 
+		transition: 0.3s;
+
 		${({ isEmpty }) =>
 			isEmpty &&
 			css`
-				display: none;
+				visibility: hidden;
 			`}
 	}
 
