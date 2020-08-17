@@ -37,7 +37,10 @@ const Home: React.FC = () => {
 		setLocation('');
 	};
 
-	const { jobs, isLoading } = fetchJobs(location, description);
+	const { jobs, isLoading, hasError, hasMore } = fetchJobs(
+		location,
+		description,
+	);
 
 	return (
 		<PageWrapper>
@@ -74,7 +77,7 @@ const Home: React.FC = () => {
 					</SearchInput>
 				</SearchBar>
 				<Jobs>
-					{isLoading ? (
+					{!hasError && isLoading ? (
 						<LoadingSpinner />
 					) : (
 						jobs.map((job) => (
@@ -93,6 +96,8 @@ const Home: React.FC = () => {
 							</button>
 						))
 					)}
+					{hasError &&
+						'Ocorreu um erro ao carregar as oportunidades, por favor tente novamente'}
 				</Jobs>
 			</Content>
 		</PageWrapper>

@@ -42,7 +42,7 @@ const JobCard: React.FC<JobCardProps> = ({
 					)}
 				</div>
 			</div>
-			<h5>{formatDate(createdAt)}</h5>
+			<h5>{createdAt && formatDate(createdAt)}</h5>
 		</Container>
 	);
 };
