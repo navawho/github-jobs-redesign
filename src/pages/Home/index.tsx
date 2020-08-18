@@ -39,7 +39,7 @@ const Home: React.FC = () => {
 				observer.current.disconnect();
 			}
 			observer.current = new IntersectionObserver((entries) => {
-				if (entries[0].isIntersecting && hasMore && jobs.length > 50) {
+				if (entries[0].isIntersecting && hasMore) {
 					setPage((prevPage) => prevPage + 1);
 				}
 			});
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
 				observer.current.observe(node);
 			}
 		},
-		[isLoading, hasMore, jobs],
+		[isLoading, hasMore],
 	);
 
 	const handleJobClick = (job: JobDTO): void => {
@@ -78,7 +78,10 @@ const Home: React.FC = () => {
 							<input
 								value={description}
 								placeholder="Pesquisar oportunidade"
-								onChange={(e) => setDescription(e.target.value)}
+								onChange={(e) => {
+									setDescription(e.target.value);
+									setPage(1);
+								}}
 							/>
 							<IconContext.Provider value={{ className: 'close-icon' }}>
 								<MdClose onClick={handleCloseDescriptionClick} />
@@ -93,7 +96,10 @@ const Home: React.FC = () => {
 							<input
 								placeholder="Filtrar localização"
 								value={location}
-								onChange={(e) => setLocation(e.target.value)}
+								onChange={(e) => {
+									setLocation(e.target.value);
+									setPage(1);
+								}}
 							/>
 							<IconContext.Provider value={{ className: 'close-icon' }}>
 								<MdClose onClick={handleCloseLocationClick} />
