@@ -11,10 +11,13 @@ export const Container = styled.div`
 export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 
 	width: 100%;
+
+	h3 {
+		margin: 12px 0;
+	}
 `;
 
 export const Breadcrumbs = styled.div`
@@ -23,6 +26,7 @@ export const Breadcrumbs = styled.div`
 	cursor: pointer;
 
 	transition: 0.3s;
+	margin-top: 32px;
 
 	&:hover {
 		color: ${shade(0.8, '#333333')};
@@ -49,40 +53,30 @@ export const Header = styled.div`
 	}
 `;
 
-export const TextBox = styled.div`
-	h2 {
-		margin-bottom: 12px;
+export const Card = styled.div`
+	background: #fff;
+	border-radius: 32px;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+	padding: 24px;
+
+	p {
+		margin: 6px 0;
 	}
 
-	.text-box {
-		background: #fff;
-		border-radius: 32px;
-		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
-		padding: 24px;
-		width: 300px;
-		height: 150px;
-		display: flex;
-		align-items: center;
+	h4 {
+		margin-bottom: 6px;
 	}
-`;
 
-export const TextContainer = styled.div`
-	display: flex;
-	align-items: center;
+	ul {
+		li {
+			margin-bottom: 6px;
+			strong {
+				color: #1d9a00;
 
-	.foward-icon {
-		transform: rotate(180deg);
-		margin-right: 24px;
-	}
-`;
-
-export const SectionWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-
-	h3 {
-		align-self: center;
-		margin-top: 36px;
+				&.black {
+					color: #333333;
+				}
+			}
+		}
 	}
 `;
