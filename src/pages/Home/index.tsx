@@ -58,10 +58,12 @@ const Home: React.FC = () => {
 
 	const handleCloseDescriptionClick = (): void => {
 		setDescription('');
+		setPage(1);
 	};
 
 	const handleCloseLocationClick = (): void => {
 		setLocation('');
+		setPage(1);
 	};
 
 	return (
