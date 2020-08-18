@@ -11,13 +11,14 @@ export const Container = styled.div`
 export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 
 	width: 100%;
 `;
 
 export const Breadcrumbs = styled.div`
+	margin-top: 36px;
+
 	display: flex;
 	align-items: center;
 	cursor: pointer;
@@ -63,6 +64,17 @@ export const TextBox = styled.div`
 		border-radius: 32px;
 		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 		padding: 24px;
+
+		.markdown {
+			color: #333333;
+			* {
+				margin: 12px 0;
+			}
+
+			ul {
+				margin-left: 32px;
+			}
+		}
 	}
 
 	margin-bottom: 32px;

@@ -47,6 +47,8 @@ export const Container = styled.div<ContainerProps>`
 				h6 {
 					font-weight: 500;
 					margin-left: 3px;
+					font-size: 14px;
+					max-width: 200px;
 				}
 			}
 		}

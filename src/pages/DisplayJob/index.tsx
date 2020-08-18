@@ -2,6 +2,8 @@ import React from 'react';
 import { MdKeyboardBackspace } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 
+import ReactMarkdown from 'react-markdown';
+
 import { Container, Content, Breadcrumbs, Header, TextBox } from './styles';
 import JobCard from '../../components/JobCard';
 
@@ -53,24 +55,21 @@ const DisplayJob: React.FC = () => {
 					<TextBox>
 						<h2>Descrição da oportunidade</h2>
 						<div className="text-box">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-								hendrerit ornare sagittis. Nam at tincidunt risus. Morbi eu erat
-								ac est convallis consequat a in magna. Phasellus sit amet
-								efficitur magna. Suspendisse fermentum nisl non velit imperdiet
-								accumsan.
-							</p>
+							<ReactMarkdown
+								source={selectedJob.description}
+								className="markdown"
+								linkTarget="_blank"
+							/>
 						</div>
 					</TextBox>
 					<TextBox>
 						<h2>Como aplicar?</h2>
 						<div className="text-box">
-							<p>
-								Interessado? Acesse o link do formulário para registrar seus
-								dados, enviar seu currículo e solucionar o desafio. Você será
-								desclassificado se não resolver o desafio ou fugir do tema.
-								https://forms.gle/mbC8hrNKqeuBanB9A
-							</p>
+							<ReactMarkdown
+								source={selectedJob.how_to_apply}
+								className="markdown"
+								linkTarget="_blank"
+							/>
 						</div>
 					</TextBox>
 				</PageWrapper>

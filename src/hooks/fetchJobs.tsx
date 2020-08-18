@@ -28,7 +28,7 @@ const FetchJobs = (
 		let cancel: Canceler;
 		api
 			.get('/positions.json', {
-				params: { description, location, page },
+				params: { description, location, page, markdown: true },
 				cancelToken: new axios.CancelToken((c) => {
 					cancel = c;
 				}),
