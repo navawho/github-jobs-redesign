@@ -39,7 +39,7 @@ const Home: React.FC = () => {
 				observer.current.disconnect();
 			}
 			observer.current = new IntersectionObserver((entries) => {
-				if (entries[0].isIntersecting && hasMore) {
+				if (entries[0].isIntersecting && hasMore && jobs.length > 50) {
 					setPage((prevPage) => prevPage + 1);
 				}
 			});
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
 				observer.current.observe(node);
 			}
 		},
-		[isLoading, hasMore],
+		[isLoading, hasMore, jobs],
 	);
 
 	const handleJobClick = (job: JobDTO): void => {
