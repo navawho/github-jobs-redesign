@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import Help from './components/Help';
+
 import GlobalStyle from './styles/global';
 
 import Routes from './routes';
@@ -13,6 +15,7 @@ const App: React.FC = () => (
 			<Routes />
 		</JobProvider>
 		<GlobalStyle />
+		<Help />
 	</BrowserRouter>
 );
 

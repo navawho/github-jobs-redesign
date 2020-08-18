@@ -9,7 +9,7 @@ import { PageWrapper } from '../styles';
 
 import { useJob } from '../../hooks/jobContext';
 
-const SecondPage: React.FC = () => {
+const DisplayJob: React.FC = () => {
 	const history = useHistory();
 
 	const { getJob } = useJob();
@@ -79,4 +79,4 @@ const SecondPage: React.FC = () => {
 	);
 };
 
-export default SecondPage;
+export default DisplayJob;
