@@ -22,4 +22,8 @@
 ## Protótipo :pencil2:
 
 Fiz o protótipo da aplicação com o Figma:
-[https://www.figma.com/file/tUr4Q8hKVJDEB09RZN8hfe/GitHub-Jobs](https://www.figma.com/file/tUr4Q8hKVJDEB09RZN8hfe/GitHub-Jobs) 
+[https://www.figma.com/file/tUr4Q8hKVJDEB09RZN8hfe/GitHub-Jobs](https://www.figma.com/file/tUr4Q8hKVJDEB09RZN8hfe/GitHub-Jobs)
+
+## API Github Jobs
+
+https://jobs.github.com/api
